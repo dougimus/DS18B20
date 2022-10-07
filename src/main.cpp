@@ -78,5 +78,5 @@ void loop() {
   Serial.println("Current temperature is: " + String(fTemp) + " deg. Celsius or " + judgement); 
  
   // wait 2s (2000ms) before doing this again 
-  delay(2000); 
+  delay(5000); 
 }
