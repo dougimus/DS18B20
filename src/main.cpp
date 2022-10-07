@@ -2,7 +2,10 @@
 // Dallas Semiconductor DS18B20 Temperature Sensor Demo Program 
 // COMP-10184 
 // Mohawk College 
- 
+
+// I, Douglas Ward, 000333587, certify that all code submitted is my own work; 
+// that I have not copied it from any other source. I also certify that I have not allowed my work to be copied by others.
+
 // library for Arduino framework  
 #include <Arduino.h> 
 // 1-Wire sensor communication libary 
