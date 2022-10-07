@@ -25,6 +25,19 @@ void setup() {
  
   // Start the DS18B20 sensor 
   DS18B20.begin(); 
+
+  Serial.println("Temperature Application");
+    
+  DeviceAddress deviceAddress;
+  if(DS18B20.getAddress(deviceAddress,0)) {
+    Serial.print("Found DS18B20 with address: ");
+    for(uint8_t i = 0; i < 8; i++) {
+      Serial.print(deviceAddress[i], HEX);
+    }
+    Serial.println("");
+  } else {
+    Serial.println("No DS18B20 temperature sensors are installed!");
+  }
 } 
  
 void loop() { 
@@ -36,8 +49,33 @@ void loop() {
   // fetch the temperature.  We only have 1 sensor, so the index is 0. 
   fTemp = DS18B20.getTempCByIndex(0); 
  
+  String judgement = "";
+  if(fTemp < 10) {
+    judgement = "Cold!";
+  }
+  else if (fTemp >= 10 && fTemp < 15)
+  {
+    judgement = "Cool";
+  }
+  else if (fTemp >= 15 && fTemp < 25)
+  {
+    judgement = "Perfect";
+  }
+  else if (fTemp >= 25 && fTemp < 30)
+  {
+    judgement = "Warm";
+  }
+  else if (fTemp >= 30 && fTemp < 35)
+  {
+    judgement = "Hot";
+  }
+  else if (fTemp > 35)
+  {
+    judgement = "Too Hot!";
+  }
+
   // print the temp to the USB serial monitor 
-  Serial.println("Current temperature is: " + String(fTemp) + " deg. Celsius"); 
+  Serial.println("Current temperature is: " + String(fTemp) + " deg. Celsius or " + judgement); 
  
   // wait 2s (2000ms) before doing this again 
   delay(2000); 
